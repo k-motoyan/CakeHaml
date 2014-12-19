@@ -1,0 +1,14 @@
+{
+    "name": "k-motoyan/cake-haml",
+    "description": "haml template engine for cakephp3",
+    "require": {
+        "mthaml/mthaml": "~1.6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "k-motoyan",
+            "email": "k.motoyan@gmail.com"
+        }
+    ]
+}
