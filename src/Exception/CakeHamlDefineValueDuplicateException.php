@@ -2,4 +2,4 @@
 
 namespace CakeHaml\Exception;
 
-class CakeHamlDefineValueDuplicateException extends Exception implements CakeHamleException {}
+class CakeHamlDefineValueDuplicateException extends \Exception implements CakeHamlException {}
