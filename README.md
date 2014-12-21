@@ -1,5 +1,7 @@
 # CakeHaml
 
+[![License](https://poser.pugx.org/k-motoyan/cake-haml/license.svg)](https://packagist.org/packages/k-motoyan/cake-haml)
+
 CakeHaml is haml template engine for cakephp3.  
 Using parser of [MtHaml](https://github.com/arnaud-lb/MtHaml).
 

@@ -21,6 +21,12 @@
             "CakeHaml\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Cake\\Test\\": "vendor/cakephp/cakephp/tests",
+            "CakeHaml\\Test\\": "tests"
+        }
+    },
     "authors": [
         {
             "name": "k-motoyan"
