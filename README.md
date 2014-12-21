@@ -1,6 +1,6 @@
 # CakeHaml
 
-CakeHaml is haml template engine of cakephp3.  
+CakeHaml is haml template engine for cakephp3.  
 Using parser of [MtHaml](https://github.com/arnaud-lb/MtHaml).
 
 ## Setup

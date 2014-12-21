@@ -8,11 +8,14 @@ use Cake\View\Exception\MissingLayoutException;
 use Cake\Filesystem\File;
 use App\View\AppView;
 use \CakeHaml\CakeHaml;
+use \CakeHaml\Config\ConfigureKey as Key;
 
 class CakeHamlView extends AppView
 {
+    /** @var string Hamle extension. */
     private static $_haml_ext = '.haml';
 
+    /** @var string CakePHP default extension. */
     private $_default_ext;
 
     public function initialize()
@@ -21,7 +24,7 @@ class CakeHamlView extends AppView
         $this->_default_ext = $this->_ext;
         $this->_ext = self::$_haml_ext;
 
-        $haml_output_path = Configure::read(HAML_OUTPUT_PATH);
+        $haml_output_path = Configure::read(Key::HAML_OUTPUT_PATH);
         if (!file_exists($haml_output_path) || !is_dir($haml_output_path)) {
             mkdir($haml_output_path);
         }
@@ -60,23 +63,31 @@ class CakeHamlView extends AppView
 
         $cache_file = new File($this->_getCacheFilePath($file));
         if ($this->_doWriteCacheFile($file, $cache_file)) {
-            $cake_haml = new CakeHaml($file, Configure::read(HAML_CONFIG));
+            $cake_haml = new CakeHaml($file, Configure::read(Key::HAML_CONFIG));
             file_put_contents($cache_file->pwd(), $cake_haml->getContent());
         }
 
-        extract($data_for_view);
-        ob_start();
-
-        include $cache_file->pwd();
-
-        return ob_get_clean();
+        return parent::_evaluate($cache_file->pwd(), $data_for_view);
     }
 
+    /**
+     * Get a cache file path.
+     *
+     * @param File $file
+     * @return string
+     */
     private function _getCacheFilePath(File $file)
     {
-        return Configure::read(HAML_OUTPUT_PATH) . 'template_' . $file->md5() . '.ctp';
+        return Configure::read(Key::HAML_OUTPUT_PATH) . 'template_' . $file->md5() . '.ctp';
     }
 
+    /**
+     * Whether a compilation is necessary.
+     *
+     * @param File $file
+     * @param File $cache_file
+     * @return bool
+     */
     private function _doWriteCacheFile(File $file, File $cache_file)
     {
         if (!file_exists($cache_file->pwd())) {
