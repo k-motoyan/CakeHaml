@@ -6,7 +6,7 @@
         "haml",
         "template"
     ],
-    "type": "plugin",
+    "type": "cakephp-plugin",
     "homepage": "https://github.com/k-motoyan/CakeHaml",
     "require": {
         "cakephp/cakephp": "3.0.*-dev",
