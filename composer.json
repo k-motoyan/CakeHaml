@@ -16,11 +16,16 @@
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
     },
-    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CakeHaml\\": "src"
+        }
+    },
     "authors": [
         {
             "name": "k-motoyan",
             "email": "k.motoyan@gmail.com"
         }
     ]
+    "license": "MIT"
 }
