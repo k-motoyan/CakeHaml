@@ -8,7 +8,6 @@ use Cake\View\Exception\MissingLayoutException;
 use Cake\Filesystem\File;
 use App\View\AppView;
 use \CakeHaml\CakeHaml;
-use \CakeHaml\Config\ConfigureKey as Key;
 
 class CakeHamlView extends AppView
 {
@@ -24,7 +23,7 @@ class CakeHamlView extends AppView
         $this->_default_ext = $this->_ext;
         $this->_ext = self::$_haml_ext;
 
-        $haml_output_path = Configure::read(Key::HAML_OUTPUT_PATH);
+        $haml_output_path = Configure::read(HAML_OUTPUT_PATH);
         if (!file_exists($haml_output_path) || !is_dir($haml_output_path)) {
             mkdir($haml_output_path);
         }
@@ -63,7 +62,7 @@ class CakeHamlView extends AppView
 
         $cache_file = new File($this->_getCacheFilePath($file));
         if ($this->_doWriteCacheFile($file, $cache_file)) {
-            $cake_haml = new CakeHaml($file, Configure::read(Key::HAML_CONFIG));
+            $cake_haml = new CakeHaml($file, Configure::read(HAML_CONFIG));
             file_put_contents($cache_file->pwd(), $cake_haml->getContent());
         }
 
@@ -78,7 +77,7 @@ class CakeHamlView extends AppView
      */
     private function _getCacheFilePath(File $file)
     {
-        return Configure::read(Key::HAML_OUTPUT_PATH) . 'template_' . $file->md5() . '.ctp';
+        return Configure::read(HAML_OUTPUT_PATH) . 'template_' . $file->md5() . '.ctp';
     }
 
     /**

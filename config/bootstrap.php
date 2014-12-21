@@ -1,17 +1,19 @@
 <?php
 
-namespace CakeHaml\Config;
-
 use \Cake\Core\Configure;
+use \CakeHaml\Exception\CakeHamlDefineValueDuplicateException as DefineValueDuplicateException;
 
-class ConfigureKey
-{
-    const HAML_CONFIG = 'default_haml_config';
-
-    const HAML_OUTPUT_PATH = 'haml_output_path';
+if (defined('HAML_CONFIG')) {
+    throw new DefineValueDuplicateException('Already defined HAML_CONFIG.');
 }
+define('HAML_CONFIG', 'default_haml_config');
 
-Configure::write(ConfigureKey::HAML_CONFIG, [
+if (defined('HAML_OUTPUT_PATH')) {
+    throw new DefineValueDuplicateException('Already defined HAML_OUTPUT_PATH.');
+}
+define('HAML_OUTPUT_PATH', 'haml_output_path');
+
+Configure::write(HAML_CONFIG, [
     'format' => 'html5',
     'enable_escaper' => true,
     'escape_html' => true,
@@ -22,4 +24,4 @@ Configure::write(ConfigureKey::HAML_CONFIG, [
     'enable_dynamic_attrs' => true,
 ]);
 
-Configure::write(ConfigureKey::HAML_OUTPUT_PATH, \CACHE .'views' . DS . 'haml' . DS);
+Configure::write(HAML_OUTPUT_PATH, \CACHE .'views' . DS . 'haml' . DS);

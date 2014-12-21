@@ -22,7 +22,7 @@ And run `php composer.phar update`
 Add plugin load line to `config/bootstrap.php` file:
 
 ```diff
-+ Plugin::load('CakeHaml');
++ Plugin::load('CakeHaml', ['bootstrap' => true]);
 ```
 
 Set the default ViewClass on the `src/Controller/AppController.php` file:
